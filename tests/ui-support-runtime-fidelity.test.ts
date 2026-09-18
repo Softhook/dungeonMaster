@@ -39,7 +39,7 @@ type OriginalUiSupportRuntime = {
     specialCharactersWhenReincarnating: number[];
 };
 
-const ORIGINAL_UI_SUPPORT_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_ui_support_runtime.json`;
+const ORIGINAL_UI_SUPPORT_PATH = `${process.cwd()}/src/assets/runtime/reference/original_ui_support_runtime.json`;
 
 function readOriginalUiSupport(): OriginalUiSupportRuntime {
     return JSON.parse(readFileSync(ORIGINAL_UI_SUPPORT_PATH, 'utf8')) as OriginalUiSupportRuntime;

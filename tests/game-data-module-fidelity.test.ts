@@ -76,7 +76,7 @@ type SourceGameDb = {
     };
 };
 
-const SOURCE_GAME_DB_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\game_db.json`;
+const SOURCE_GAME_DB_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/game_db.json`;
 const FOOD_MISC_IDS = [29, 30, 31, 32, 33, 34, 35, 36] as const;
 const SOURCE_ITEM_OBJECT_INDEX_OFFSETS = {
     Scroll: 0,
@@ -110,9 +110,9 @@ function createWeaponItem(typeId: number, rawName?: string): FloorItem {
 test('game_db runtime slices stay byte-identical through the raw slice loaders', async () => {
     await preloadGameDbData();
 
-    const runtimeItems = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\db\\game_db_items.json`, 'utf8');
-    const runtimeWeaponAttacks = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\db\\game_db_weapon_attacks.json`, 'utf8');
-    const runtimeCreatures = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\db\\game_db_creatures.json`, 'utf8');
+    const runtimeItems = readFileSync(`${process.cwd()}/src/assets/runtime/db/game_db_items.json`, 'utf8');
+    const runtimeWeaponAttacks = readFileSync(`${process.cwd()}/src/assets/runtime/db/game_db_weapon_attacks.json`, 'utf8');
+    const runtimeCreatures = readFileSync(`${process.cwd()}/src/assets/runtime/db/game_db_creatures.json`, 'utf8');
 
     assert.equal(getGameDbItemsRawSync(), runtimeItems);
     assert.equal(getGameDbWeaponAttacksRawSync(), runtimeWeaponAttacks);

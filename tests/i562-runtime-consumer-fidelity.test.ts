@@ -22,8 +22,8 @@ type SourceGameDbItems = {
     };
 };
 
-const SOURCE_EXTRACTION_GAME_DB_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\game_db.json`;
-const SOURCE_GAME_DB_ITEMS_PATH = `${process.cwd()}\\src\\assets\\runtime\\db\\game_db_items.json`;
+const SOURCE_EXTRACTION_GAME_DB_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/game_db.json`;
+const SOURCE_GAME_DB_ITEMS_PATH = `${process.cwd()}/src/assets/runtime/db/game_db_items.json`;
 
 function readSourceGameDbItems(): SourceGameDbItems {
     return JSON.parse(readFileSync(SOURCE_GAME_DB_ITEMS_PATH, 'utf8')) as SourceGameDbItems;

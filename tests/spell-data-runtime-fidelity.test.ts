@@ -40,8 +40,8 @@ type SourceGameDb = {
     };
 };
 
-const SOURCE_GAME_DB_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\game_db.json`;
-const RUNTIME_GAME_DB_PATH = `${process.cwd()}\\src\\assets\\runtime\\db\\game_db.json`;
+const SOURCE_GAME_DB_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/game_db.json`;
+const RUNTIME_GAME_DB_PATH = `${process.cwd()}/src/assets/runtime/db/game_db.json`;
 const FAMILY_BY_ROW = {
     power: 'power',
     element1: 'element',

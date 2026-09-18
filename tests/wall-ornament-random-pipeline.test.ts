@@ -24,7 +24,7 @@ type OverlayPositionsData = {
 };
 
 function readJson<T>(relativePath: string): T {
-    return JSON.parse(readFileSync(`${process.cwd()}\\${relativePath}`, 'utf8')) as T;
+    return JSON.parse(readFileSync(`${process.cwd()}/${relativePath}`, 'utf8')) as T;
 }
 
 function findLevelOneWishFountainFace(data: OverlayPositionsData): RandomCapableFace | undefined {
@@ -46,8 +46,8 @@ function findLevelOneResolvedRandomFountainFace(data: OverlayPositionsData): Ran
 }
 
 test('runtime wall overlay snapshot preserves random-capable wall ornament faces from the full extracted export', () => {
-    const fullExport = readJson<OverlayPositionsData>('public\\original_wall_overlay_positions.json');
-    const runtimeSnapshot = readJson<OverlayPositionsData>('src\\assets\\runtime\\support\\original_wall_overlay_positions.json');
+    const fullExport = readJson<OverlayPositionsData>('public/original_wall_overlay_positions.json');
+    const runtimeSnapshot = readJson<OverlayPositionsData>('src/assets/runtime/support/original_wall_overlay_positions.json');
 
     const expectedFace = findLevelOneWishFountainFace(fullExport);
     assert.ok(expectedFace, 'expected the extracted export to include Level 1 (4,6) West as a random-capable wall ornament face');
@@ -66,7 +66,7 @@ test('runtime wall overlay snapshot preserves random-capable wall ornament faces
 });
 
 test('per-map runtime wall overlay support keeps random-capable entries and effective placements', () => {
-    const runtimeMap = readJson<OverlayPositionsData>('src\\assets\\runtime\\support\\wall_overlays\\map-01.json');
+    const runtimeMap = readJson<OverlayPositionsData>('src/assets/runtime/support/wall_overlays/map-01.json');
 
     const randomFace = findLevelOneWishFountainFace(runtimeMap);
     assert.ok(randomFace, 'Level 1 wall overlay support map should keep the random-capable fountain candidate face');
@@ -85,7 +85,7 @@ test('per-map runtime wall overlay support keeps random-capable entries and effe
 });
 
 test('runtime wall overlay effective placements resolve deterministic random ornaments with the original engine formula', () => {
-    const runtimeMap = readJson<OverlayPositionsData>('src\\assets\\runtime\\support\\wall_overlays\\map-01.json');
+    const runtimeMap = readJson<OverlayPositionsData>('src/assets/runtime/support/wall_overlays/map-01.json');
 
     const missingFace = (runtimeMap.effectivePlacements ?? []).find((face) =>
         face.mapIndex === 1 &&

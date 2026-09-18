@@ -69,7 +69,7 @@ const FLOOR_SENSOR_LABELS: Record<number, string> = {
 
 function readSourceDungeon(): SourceDungeon {
     return JSON.parse(
-        readFileSync(`${process.cwd()}\\assets\\OriginalDataExtraction\\output\\dungeon.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/assets/OriginalDataExtraction/output/dungeon.json`, 'utf8'),
     ) as SourceDungeon;
 }
 

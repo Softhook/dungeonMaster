@@ -38,7 +38,7 @@ type SourceTeleporterRecord = {
     destY: number;
 };
 
-const SOURCE_DUNGEON_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\dungeon.json`;
+const SOURCE_DUNGEON_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/dungeon.json`;
 
 function readSourceTeleporters(): SourceTeleporterRecord[] {
     const dungeon = JSON.parse(readFileSync(SOURCE_DUNGEON_PATH, 'utf8')) as SourceDungeon;

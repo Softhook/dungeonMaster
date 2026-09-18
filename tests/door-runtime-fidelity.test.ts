@@ -21,12 +21,12 @@ type OriginalDoorsPayload = {
 };
 
 function toWorkspaceAssetPath(imagePath: string): string {
-    return `${process.cwd()}\\public${imagePath.replace(/\//g, '\\')}`;
+    return `${process.cwd()}/public${imagePath.replace(/\//g, '/')}`;
 }
 
 test('door runtime definitions stay aligned with the extracted original door reference', () => {
     const originalDoors = JSON.parse(
-        readFileSync(`${process.cwd()}\\public\\original_doors_runtime.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/public/original_doors_runtime.json`, 'utf8'),
     ) as OriginalDoorsPayload;
 
     for (const original of originalDoors.doors) {

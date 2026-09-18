@@ -18,7 +18,7 @@ type RawMap = {
 
 function readRuntimeMap(level: number): GameMap {
     const raw = JSON.parse(
-        readFileSync(`${process.cwd()}\\src\\assets\\runtime\\dungeon\\maps\\level-${level}.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/src/assets/runtime/dungeon/maps/level-${level}.json`, 'utf8'),
     ) as RawMap;
     const tiles: GameMap['tiles'] = Array.from(
         { length: raw.height },

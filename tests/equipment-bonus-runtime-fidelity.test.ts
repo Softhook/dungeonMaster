@@ -38,8 +38,8 @@ type OriginalEquipmentBonusesRuntime = {
     };
 };
 
-const CANONICAL_REFERENCE_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_equipment_bonuses_runtime.json`;
-const RUNTIME_REFERENCE_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_equipment_bonuses_runtime.json`;
+const CANONICAL_REFERENCE_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_equipment_bonuses_runtime.json`;
+const RUNTIME_REFERENCE_PATH = `${process.cwd()}/src/assets/runtime/reference/original_equipment_bonuses_runtime.json`;
 
 function createChampion(): Champion {
     return {

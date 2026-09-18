@@ -45,7 +45,7 @@ type SourceGameDb = {
     };
 };
 
-const SOURCE_GAME_DB_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\game_db.json`;
+const SOURCE_GAME_DB_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/game_db.json`;
 const SOURCE_ITEM_OBJECT_INDEX_OFFSETS = {
     Scroll: 0,
     Container: 1,

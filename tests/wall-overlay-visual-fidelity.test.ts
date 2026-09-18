@@ -18,12 +18,12 @@ type OverlaySupportData = {
 
 function toWorkspaceAssetPath(imagePath: string): string {
     const [pathname] = imagePath.split('?');
-    return `${process.cwd()}\\public${pathname.replace(/\//g, '\\')}`;
+    return `${process.cwd()}/public${pathname.replace(/\//g, '/')}`;
 }
 
 test('wall overlay families resolve to packaged modern overlay assets when available', () => {
     const supportData = JSON.parse(
-        readFileSync(`${process.cwd()}\\src\\assets\\runtime\\support\\original_wall_overlay_positions.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/src/assets/runtime/support/original_wall_overlay_positions.json`, 'utf8'),
     ) as OverlaySupportData;
 
     const overlayNames = new Set(

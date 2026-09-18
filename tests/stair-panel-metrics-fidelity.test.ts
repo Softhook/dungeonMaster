@@ -49,7 +49,7 @@ function requireEntry(entries: GraphicsDbEntry[], description: string): Graphics
 
 test('stair front panel metrics stay aligned with extracted graphics_db dimensions', () => {
     const graphicsDb = JSON.parse(
-        readFileSync(`${process.cwd()}\\public\\graphics_db.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/public/graphics_db.json`, 'utf8'),
     ) as Record<string, unknown>;
     const entries = findEntriesWithDescription(graphicsDb);
 

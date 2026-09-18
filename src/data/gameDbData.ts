@@ -45,7 +45,7 @@ async function preloadRawSlice(slice: CachedRawSlice): Promise<void> {
                     specifier: string,
                 ) => Promise<{ readFile: (path: string, encoding: string) => Promise<string> }>;
                 const fsPromises = await dynamicImport('node:fs/promises');
-                return fsPromises.readFile(`${runtimeProcess.cwd()}\\${slice.fallbackWorkspacePath}`, 'utf8');
+                return fsPromises.readFile(`${runtimeProcess.cwd()}/${slice.fallbackWorkspacePath}`, 'utf8');
             })
             .then((module) => {
                 const raw = unwrapImportedModule(module);
@@ -65,15 +65,15 @@ function getRawSliceSync(slice: CachedRawSlice, label: string): string {
 
 const itemsSlice = createRawSliceLoader(
     () => import('../assets/runtime/db/game_db_items.json?raw'),
-    'src\\assets\\runtime\\db\\game_db_items.json',
+    'src/assets/runtime/db/game_db_items.json',
 );
 const weaponAttacksSlice = createRawSliceLoader(
     () => import('../assets/runtime/db/game_db_weapon_attacks.json?raw'),
-    'src\\assets\\runtime\\db\\game_db_weapon_attacks.json',
+    'src/assets/runtime/db/game_db_weapon_attacks.json',
 );
 const creaturesSlice = createRawSliceLoader(
     () => import('../assets/runtime/db/game_db_creatures.json?raw'),
-    'src\\assets\\runtime\\db\\game_db_creatures.json',
+    'src/assets/runtime/db/game_db_creatures.json',
 );
 
 function resetRawSlice(slice: CachedRawSlice): void {

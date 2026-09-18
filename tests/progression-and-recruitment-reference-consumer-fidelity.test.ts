@@ -85,8 +85,8 @@ type OriginalMirrorRecruitmentRuntime = {
     };
 };
 
-const ORIGINAL_CHAMPION_PROGRESSION_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_champion_progression_runtime.json`;
-const ORIGINAL_MIRROR_RECRUITMENT_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_mirror_recruitment_runtime.json`;
+const ORIGINAL_CHAMPION_PROGRESSION_PATH = `${process.cwd()}/src/assets/runtime/reference/original_champion_progression_runtime.json`;
+const ORIGINAL_MIRROR_RECRUITMENT_PATH = `${process.cwd()}/src/assets/runtime/reference/original_mirror_recruitment_runtime.json`;
 
 function readChampionProgressionReference(): OriginalChampionProgressionRuntime {
     return JSON.parse(readFileSync(ORIGINAL_CHAMPION_PROGRESSION_PATH, 'utf8')) as OriginalChampionProgressionRuntime;

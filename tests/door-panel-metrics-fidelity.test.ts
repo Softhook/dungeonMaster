@@ -27,7 +27,7 @@ type GraphicsPanelsPayload = {
 
 function loadPanels(): GraphicsPanelsPayload {
     return JSON.parse(
-        readFileSync(`${process.cwd()}\\public\\graphics_panels_0696.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/public/graphics_panels_0696.json`, 'utf8'),
     ) as GraphicsPanelsPayload;
 }
 

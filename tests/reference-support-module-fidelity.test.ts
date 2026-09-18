@@ -76,20 +76,20 @@ type SourceGameDbCreatures = {
     };
 };
 
-const ORIGINAL_CREATURES_PATH = `${process.cwd()}\\public\\original_creatures_runtime.json`;
-const ORIGINAL_DOORS_PATH = `${process.cwd()}\\public\\original_doors_runtime.json`;
-const ORIGINAL_EXPERIENCE_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_experience_runtime.json`;
-const ORIGINAL_CHAMPION_PROGRESSION_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_champion_progression_runtime.json`;
-const ORIGINAL_MIRROR_RECRUITMENT_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_mirror_recruitment_runtime.json`;
-const ORIGINAL_ITEM_RULES_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_item_rules_runtime.json`;
-const ORIGINAL_EQUIPMENT_BONUSES_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_equipment_bonuses_runtime.json`;
-const ORIGINAL_SKILLS_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_skills_runtime.json`;
-const ORIGINAL_MAGIC_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_magic_runtime.json`;
-const ORIGINAL_ACTIONS_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_actions_runtime.json`;
-const ORIGINAL_ACTION_COMBOS_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_action_combos_runtime.json`;
-const ORIGINAL_UI_SUPPORT_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_ui_support_runtime.json`;
-const ORIGINAL_TELEPORTERS_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_teleporters_runtime.json`;
-const SOURCE_GAME_DB_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\game_db.json`;
+const ORIGINAL_CREATURES_PATH = `${process.cwd()}/public/original_creatures_runtime.json`;
+const ORIGINAL_DOORS_PATH = `${process.cwd()}/public/original_doors_runtime.json`;
+const ORIGINAL_EXPERIENCE_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_experience_runtime.json`;
+const ORIGINAL_CHAMPION_PROGRESSION_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_champion_progression_runtime.json`;
+const ORIGINAL_MIRROR_RECRUITMENT_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_mirror_recruitment_runtime.json`;
+const ORIGINAL_ITEM_RULES_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_item_rules_runtime.json`;
+const ORIGINAL_EQUIPMENT_BONUSES_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_equipment_bonuses_runtime.json`;
+const ORIGINAL_SKILLS_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_skills_runtime.json`;
+const ORIGINAL_MAGIC_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_magic_runtime.json`;
+const ORIGINAL_ACTIONS_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_actions_runtime.json`;
+const ORIGINAL_ACTION_COMBOS_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_action_combos_runtime.json`;
+const ORIGINAL_UI_SUPPORT_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_ui_support_runtime.json`;
+const ORIGINAL_TELEPORTERS_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_teleporters_runtime.json`;
+const SOURCE_GAME_DB_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/game_db.json`;
 
 function readOriginalCreatures(): OriginalCreaturesPayload {
     return JSON.parse(readFileSync(ORIGINAL_CREATURES_PATH, 'utf8')) as OriginalCreaturesPayload;
@@ -108,19 +108,19 @@ function readSourceGameDbCreatures(): SourceGameDbCreatures {
 }
 
 test('runtime creature, door, teleporter and documented reference exports stay byte-identical to their canonical exports', () => {
-    const runtimeCreatures = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_creatures_runtime.json`, 'utf8');
-    const runtimeDoors = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_doors_runtime.json`, 'utf8');
-    const runtimeExperience = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_experience_runtime.json`, 'utf8');
-    const runtimeChampionProgression = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_champion_progression_runtime.json`, 'utf8');
-    const runtimeMirrorRecruitment = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_mirror_recruitment_runtime.json`, 'utf8');
-    const runtimeItemRules = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_item_rules_runtime.json`, 'utf8');
-    const runtimeEquipmentBonuses = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_equipment_bonuses_runtime.json`, 'utf8');
-    const runtimeSkills = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_skills_runtime.json`, 'utf8');
-    const runtimeMagic = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_magic_runtime.json`, 'utf8');
-    const runtimeActions = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_actions_runtime.json`, 'utf8');
-    const runtimeActionCombos = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_action_combos_runtime.json`, 'utf8');
-    const runtimeUiSupport = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_ui_support_runtime.json`, 'utf8');
-    const runtimeTeleporters = readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_teleporters_runtime.json`, 'utf8');
+    const runtimeCreatures = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_creatures_runtime.json`, 'utf8');
+    const runtimeDoors = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_doors_runtime.json`, 'utf8');
+    const runtimeExperience = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_experience_runtime.json`, 'utf8');
+    const runtimeChampionProgression = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_champion_progression_runtime.json`, 'utf8');
+    const runtimeMirrorRecruitment = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_mirror_recruitment_runtime.json`, 'utf8');
+    const runtimeItemRules = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_item_rules_runtime.json`, 'utf8');
+    const runtimeEquipmentBonuses = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_equipment_bonuses_runtime.json`, 'utf8');
+    const runtimeSkills = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_skills_runtime.json`, 'utf8');
+    const runtimeMagic = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_magic_runtime.json`, 'utf8');
+    const runtimeActions = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_actions_runtime.json`, 'utf8');
+    const runtimeActionCombos = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_action_combos_runtime.json`, 'utf8');
+    const runtimeUiSupport = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_ui_support_runtime.json`, 'utf8');
+    const runtimeTeleporters = readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_teleporters_runtime.json`, 'utf8');
 
     assert.equal(runtimeCreatures, readFileSync(ORIGINAL_CREATURES_PATH, 'utf8'));
     assert.equal(runtimeDoors, readFileSync(ORIGINAL_DOORS_PATH, 'utf8'));
@@ -140,7 +140,7 @@ test('runtime creature, door, teleporter and documented reference exports stay b
 test('runtime door reference preserves every original runtime door definition exactly', () => {
     const expected = readOriginalDoors();
     const actual = JSON.parse(
-        readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_doors_runtime.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_doors_runtime.json`, 'utf8'),
     ) as OriginalDoorsPayload;
 
     assert.deepEqual(actual, expected);
@@ -149,7 +149,7 @@ test('runtime door reference preserves every original runtime door definition ex
 test('runtime teleporter reference preserves every canonical teleporter definition exactly', () => {
     const expected = readOriginalTeleporters();
     const actual = JSON.parse(
-        readFileSync(`${process.cwd()}\\src\\assets\\runtime\\reference\\original_teleporters_runtime.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/src/assets/runtime/reference/original_teleporters_runtime.json`, 'utf8'),
     ) as OriginalTeleportersPayload;
 
     assert.deepEqual(actual, expected);
@@ -255,7 +255,7 @@ test('wall overlay support loader preserves every split runtime map exactly', as
 
     for (let mapIndex = 0; mapIndex <= 13; mapIndex += 1) {
         const expected = JSON.parse(
-            readFileSync(`${process.cwd()}\\src\\assets\\runtime\\support\\wall_overlays\\map-${String(mapIndex).padStart(2, '0')}.json`, 'utf8'),
+            readFileSync(`${process.cwd()}/src/assets/runtime/support/wall_overlays/map-${String(mapIndex).padStart(2, '0')}.json`, 'utf8'),
         ) as unknown;
         const actual = getOriginalWallOverlayMapDataSync<unknown>(mapIndex);
         assert.deepEqual(actual, expected, `wall overlay map ${mapIndex} drifted through the loader`);

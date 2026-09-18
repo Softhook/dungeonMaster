@@ -147,13 +147,13 @@ type RuntimeWeaponAttacksDb = {
     };
 };
 
-const ORIGINAL_SKILLS_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_skills_runtime.json`;
-const ORIGINAL_ITEM_RULES_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_item_rules_runtime.json`;
-const ORIGINAL_MAGIC_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_magic_runtime.json`;
-const RAW_I560_STATS_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\atari_i560_stats.json`;
-const ORIGINAL_ACTIONS_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_actions_runtime.json`;
-const ORIGINAL_ACTION_COMBOS_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_action_combos_runtime.json`;
-const RUNTIME_WEAPON_ATTACKS_DB_PATH = `${process.cwd()}\\src\\assets\\runtime\\db\\game_db_weapon_attacks.json`;
+const ORIGINAL_SKILLS_PATH = `${process.cwd()}/src/assets/runtime/reference/original_skills_runtime.json`;
+const ORIGINAL_ITEM_RULES_PATH = `${process.cwd()}/src/assets/runtime/reference/original_item_rules_runtime.json`;
+const ORIGINAL_MAGIC_PATH = `${process.cwd()}/src/assets/runtime/reference/original_magic_runtime.json`;
+const RAW_I560_STATS_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/atari_i560_stats.json`;
+const ORIGINAL_ACTIONS_PATH = `${process.cwd()}/src/assets/runtime/reference/original_actions_runtime.json`;
+const ORIGINAL_ACTION_COMBOS_PATH = `${process.cwd()}/src/assets/runtime/reference/original_action_combos_runtime.json`;
+const RUNTIME_WEAPON_ATTACKS_DB_PATH = `${process.cwd()}/src/assets/runtime/db/game_db_weapon_attacks.json`;
 
 function normalizeSkillName(value: string): SkillKey {
     return value.toLowerCase() as SkillKey;

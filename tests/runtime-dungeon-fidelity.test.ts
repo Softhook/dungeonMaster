@@ -32,7 +32,7 @@ type SourceObject = Record<string, unknown> & {
     index: number;
 };
 
-const SOURCE_DUNGEON_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\dungeon.json`;
+const SOURCE_DUNGEON_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/dungeon.json`;
 
 function readSourceDungeon(): SourceDungeon {
     return JSON.parse(readFileSync(SOURCE_DUNGEON_PATH, 'utf8')) as SourceDungeon;

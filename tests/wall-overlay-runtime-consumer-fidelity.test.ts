@@ -50,7 +50,7 @@ function createOpenRoomMap(): GameMap {
 
 test('all extracted fixed wall overlay names are explicitly mapped instead of falling back to generic runtime labels', () => {
     const supportData = JSON.parse(
-        readFileSync(`${process.cwd()}\\src\\assets\\runtime\\support\\original_wall_overlay_positions.json`, 'utf8'),
+        readFileSync(`${process.cwd()}/src/assets/runtime/support/original_wall_overlay_positions.json`, 'utf8'),
     ) as OverlaySupportData;
 
     const omitted = new Set([

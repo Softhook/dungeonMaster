@@ -29,8 +29,8 @@ type OriginalExperienceRuntime = {
     };
 };
 
-const CANONICAL_EXPERIENCE_REFERENCE_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\reference_exports\\original_experience_runtime.json`;
-const RUNTIME_EXPERIENCE_REFERENCE_PATH = `${process.cwd()}\\src\\assets\\runtime\\reference\\original_experience_runtime.json`;
+const CANONICAL_EXPERIENCE_REFERENCE_PATH = `${process.cwd()}/assets/OriginalDataExtraction/reference_exports/original_experience_runtime.json`;
+const RUNTIME_EXPERIENCE_REFERENCE_PATH = `${process.cwd()}/src/assets/runtime/reference/original_experience_runtime.json`;
 
 function readCanonicalExperienceRuntime(): OriginalExperienceRuntime {
     return JSON.parse(readFileSync(CANONICAL_EXPERIENCE_REFERENCE_PATH, 'utf8')) as OriginalExperienceRuntime;

@@ -28,7 +28,7 @@ type SourceDungeon = {
     champions: SourceChampion[];
 };
 
-const SOURCE_DUNGEON_PATH = `${process.cwd()}\\assets\\OriginalDataExtraction\\output\\dungeon.json`;
+const SOURCE_DUNGEON_PATH = `${process.cwd()}/assets/OriginalDataExtraction/output/dungeon.json`;
 const ORIGINAL_STAMINA_SCALE = 10;
 
 function readSourceDungeon(): SourceDungeon {
