@@ -8,6 +8,8 @@ This folder keeps the original reverse-engineering base used to rebuild authorit
   - primary PC extraction base used by the local parsers
 - `OriginalAtariGame/`
   - canonical Atari ST source used for proven `0558..0562` extraction
+- `OriginalAmigaGame/`
+  - real Amiga floppy dumps (ADF/IPF) and a fan hard-disk port, used to extract Amiga-specific graphics/sound for visual and audio fidelity work
 - `sourceCode/`
   - original source drop used to confirm structure and runtime semantics
 - `ReDMCSB/`

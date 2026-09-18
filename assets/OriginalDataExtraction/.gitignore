@@ -34,6 +34,7 @@ DMExtract v1.01/*
 # Keep large raw game files, extracted corpora, and third-party mirrors only locally.
 EUDATA/
 OriginalAtariGame/
+OriginalAmigaGame/
 original-pc-runtime/
 ReDMCSB/
 sck/
