@@ -13,7 +13,7 @@ import type { Champion } from '../../data/champions';
 import type { ChampionEquipment } from '../../types/game';
 import { getEquippedItemImage } from '../../data/itemImages';
 import { getPreferredCombatItem, QUIVER_SLOT_KEYS } from '../../data/equipment';
-import { formatKeybinding, matchesKeybinding, normalizeBindingKey } from '../../engine/options';
+import { DEFAULT_KEYBINDINGS, formatKeybinding, matchesKeybinding, normalizeBindingKey } from '../../engine/options';
 import { importPersistedSave } from '../../engine/saveGame';
 import { findSpell, getOriginalPreparedRuneManaCost, getOriginalRuneSelectionManaCost } from '../../data/runes';
 import { itemsPath } from '../../data/assetPaths';
@@ -577,7 +577,7 @@ export const HUD = () => {
     const manual = translations.manual;
     const {
         party, level, position, direction,
-        selectedChampionIndex, selectChampion, openPartyMember, reorderParty,
+        selectedChampionIndex, selectChampion, openPartyMember, closePartyMember, activePartyMemberId, reorderParty,
         moveForward, moveBackward, strafeLeft, strafeRight, turnLeft, turnRight,
         championVitals, spendPreparedSpellMana, castSpell: storeCastSpell, lastCastResult,
         championXP, championTemporaryXP, championCombat, attackFront, championEquipment, gameOptions,
@@ -593,6 +593,8 @@ export const HUD = () => {
         selectedChampionIndex: state.selectedChampionIndex,
         selectChampion: state.selectChampion,
         openPartyMember: state.openPartyMember,
+        closePartyMember: state.closePartyMember,
+        activePartyMemberId: state.activePartyMemberId,
         reorderParty: state.reorderParty,
         moveForward: state.moveForward,
         moveBackward: state.moveBackward,
@@ -931,6 +933,22 @@ export const HUD = () => {
             if (paused || tutorialOverlayActive) return;
             if (optionsModalOpen || tutorialModalOpen) return;
             if (isTextEntryTarget(e.target)) return;
+
+            if (e.key >= '1' && e.key <= '4') {
+                const championIndex = Number(e.key) - 1;
+                const champion = party[championIndex];
+                if (champion) {
+                    e.preventDefault();
+                    if (activePartyMemberId === champion.id) {
+                        closePartyMember();
+                    } else {
+                        if (selectedChampionIndex !== championIndex) selectChampion(championIndex);
+                        openPartyMember(champion.id);
+                    }
+                }
+                return;
+            }
+
             const heldMovementKey = resolveHeldMovementKey(e.key);
             if (heldMovementKey) {
                 e.preventDefault();
@@ -960,13 +978,19 @@ export const HUD = () => {
             window.removeEventListener('blur', clearHeldMovementState);
         };
     }, [
+        activePartyMemberId,
         clearHeldMovementState,
+        closePartyMember,
         flash,
         gameOptions,
+        openPartyMember,
         optionsModalOpen,
+        party,
         paused,
         resolveHeldMovementKey,
         runHeldMovement,
+        selectChampion,
+        selectedChampionIndex,
         setHeldMovementPressed,
         tutorialOverlayActive,
         tutorialModalOpen,
@@ -1300,6 +1324,10 @@ export const HUD = () => {
                         setRebindingTarget((current) =>
                             current?.action === target.action && current.slot === target.slot ? null : target,
                         );
+                    }}
+                    onResetKeybindings={() => {
+                        setRebindingTarget(null);
+                        setGameOptions({ keybindings: DEFAULT_KEYBINDINGS });
                     }}
                 />
             </Suspense>

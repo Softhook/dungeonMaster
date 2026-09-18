@@ -16,6 +16,8 @@ export type WallDecalPreset = {
     plateColor: string;
     faceInset?: number;
     contentDepth?: number;
+    /** Overrides the shared backing-plate thickness (WallDecal's PLATE_DEPTH) for this decal. */
+    plateDepth?: number;
     scatterXOptions?: number[];
     scatterYOptions?: number[];
 };
@@ -82,17 +84,19 @@ const DECAL_PRESETS: Record<string, WallDecalPreset> = {
         width: GRID_SIZE * 0.28,
         height: WALL_HEIGHT * 0.46,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.03,
     },
     [LEVER_DOWN_IMAGE]: {
         width: GRID_SIZE * 0.28,
         height: WALL_HEIGHT * 0.46,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.03,
     },
     [ALTAR_IMAGE]: {
         width: GRID_SIZE * 0.56,
@@ -106,9 +110,10 @@ const DECAL_PRESETS: Record<string, WallDecalPreset> = {
         width: GRID_SIZE * 0.18,
         height: WALL_HEIGHT * 0.5,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: true,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.045,
     },
     [FOUNTAIN_IMAGE]: {
         width: GRID_SIZE * 0.72,
@@ -122,41 +127,46 @@ const DECAL_PRESETS: Record<string, WallDecalPreset> = {
         width: GRID_SIZE * 0.15,
         height: WALL_HEIGHT * 0.15,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.03,
     },
     [WOOD_RING_IMAGE]: {
         width: GRID_SIZE * 0.15,
         height: WALL_HEIGHT * 0.15,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.03,
     },
     [IRON_RING_IMAGE]: {
         width: GRID_SIZE * 0.2,
         height: WALL_HEIGHT * 0.2,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.03,
     },
     [FULL_TORCH_HOLDER_IMAGE]: {
         width: GRID_SIZE * 0.24,
         height: WALL_HEIGHT * 0.92,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.045,
     },
     [EMPTY_TORCH_HOLDER_IMAGE]: {
         width: GRID_SIZE * 0.42,
         height: WALL_HEIGHT * 0.48,
         y: 0,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.045,
     },
     [SLIME_OUTLET_IMAGE]: {
         width: GRID_SIZE * 0.34,
@@ -252,25 +262,28 @@ const DECAL_PRESETS: Record<string, WallDecalPreset> = {
         width: GRID_SIZE * 0.36,
         height: WALL_HEIGHT * 0.36,
         y: -WALL_HEIGHT * 0.01,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.025,
     },
     [TINY_SWITCH_IMAGE]: {
         width: GRID_SIZE * 0.28,
         height: WALL_HEIGHT * 0.28,
         y: -WALL_HEIGHT * 0.01,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.025,
     },
     [EYE_SWITCH_IMAGE]: {
         width: GRID_SIZE * 0.42,
         height: WALL_HEIGHT * 0.42,
         y: -WALL_HEIGHT * 0.01,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.025,
     },
     [STAIRS_UP_IMAGE]: {
         width: GRID_SIZE * getOriginalStairsUpFrontWidthRatio(),
@@ -295,9 +308,10 @@ for (const image of LOCK_IMAGES) {
         width: GRID_SIZE * 0.2,
         height: WALL_HEIGHT * 0.2,
         y: -WALL_HEIGHT * 0.02,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: true,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.025,
     };
 }
 
@@ -324,9 +338,10 @@ for (const image of BIG_SWITCH_IMAGES) {
         width: GRID_SIZE * 0.44,
         height: WALL_HEIGHT * 0.44,
         y: -WALL_HEIGHT * 0.01,
-        hasBacking: false,
+        hasBacking: true,
         hasGlow: false,
         plateColor: '#3a2b1d',
+        plateDepth: GRID_SIZE * 0.025,
     };
 }
 

@@ -28,6 +28,7 @@ export const HudOptionsModal: React.FC<{
     onChangeLocale: (locale: Locale) => void;
     onToggleMinimap: () => void;
     onToggleBinding: (target: HudRebindingTarget) => void;
+    onResetKeybindings: () => void;
     onSaveGame: () => Promise<SaveTransferFeedback> | SaveTransferFeedback;
     onExportSave: () => Promise<SaveTransferFeedback> | SaveTransferFeedback;
     onImportSave: (file: File) => Promise<SaveTransferFeedback> | SaveTransferFeedback;
@@ -42,6 +43,7 @@ export const HudOptionsModal: React.FC<{
     onChangeLocale,
     onToggleMinimap,
     onToggleBinding,
+    onResetKeybindings,
     onSaveGame,
     onExportSave,
     onImportSave,
@@ -325,6 +327,24 @@ export const HudOptionsModal: React.FC<{
                                     >
                                         Esc
                                     </div>
+                                </div>
+                                <div style={{ paddingTop: 6 }}>
+                                    <button
+                                        type="button"
+                                        onClick={onResetKeybindings}
+                                        title={text.resetKeybindingsTitle}
+                                        style={{
+                                            padding: '10px 12px',
+                                            borderRadius: 6,
+                                            border: '1px solid rgba(212,184,112,0.3)',
+                                            background: 'rgba(0,0,0,0.62)',
+                                            color: '#d8c08b',
+                                            fontSize: 14,
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        {text.resetKeybindings}
+                                    </button>
                                 </div>
                             </div>
                         )}

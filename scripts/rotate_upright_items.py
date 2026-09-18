@@ -9,8 +9,11 @@ consistent with untouched items).
 
 Applied once on 2026-09-18 to the CANDIDATES list below (all items with
 PCA elongation ratio >= 15, hand-picked after visual review of a contact
-sheet). Re-run with --apply to redo, or edit CANDIDATES for new items
-that turn out to have the same diagonal "product shot" pose problem.
+sheet). Re-applied on 2026-09-18 from the pre-rotation originals after
+fixing a bug where the post-crop resize scaled content UP to fill the
+canvas, inflating padded items (e.g. keys) to ~2x their intended size.
+Re-run with --apply to redo, or edit CANDIDATES for new items that turn
+out to have the same diagonal "product shot" pose problem.
 Usage: python3 scripts/rotate_upright_items.py --apply [--out=<dir>]
 (omit --apply for a dry run; omit --out to overwrite in place).
 """
@@ -77,15 +80,20 @@ def process(name, out_dir=None, dry_run=True):
         return
     cropped = rotated.crop(bbox)
 
-    # Fit cropped content into a canvas of the ORIGINAL size, preserving aspect,
-    # centered, so on-screen scale stays consistent with untouched items.
+    # Paste at native pixel scale onto a canvas of the ORIGINAL size, centered.
+    # Rotation (expand=True) doesn't change physical content size, so only shrink
+    # if the rotated bbox no longer fits -- never scale up. Scaling up here used
+    # to inflate items that had a lot of transparent padding pre-rotation (e.g.
+    # keys) to ~2x their intended size relative to other items, which is why they
+    # rendered oversized/misaligned in-game (floating out of alcoves, etc).
     canvas = Image.new("RGBA", orig_size, (0, 0, 0, 0))
     cw, ch = cropped.size
-    scale = min(orig_size[0] / cw, orig_size[1] / ch)
-    new_size = (max(1, round(cw * scale)), max(1, round(ch * scale)))
-    resized = cropped.resize(new_size, Image.LANCZOS)
-    offset = ((orig_size[0] - new_size[0]) // 2, (orig_size[1] - new_size[1]) // 2)
-    canvas.paste(resized, offset, resized)
+    scale = min(1.0, orig_size[0] / cw, orig_size[1] / ch)
+    if scale < 1.0:
+        new_size = (max(1, round(cw * scale)), max(1, round(ch * scale)))
+        cropped = cropped.resize(new_size, Image.LANCZOS)
+    offset = ((orig_size[0] - cropped.size[0]) // 2, (orig_size[1] - cropped.size[1]) // 2)
+    canvas.paste(cropped, offset, cropped)
 
     target = f"{out_dir}/{name}.png" if out_dir else path
     if not dry_run:

@@ -222,12 +222,13 @@ export const WallDecal = ({
     const decalHeight = height ?? preset.height;
     const plateWidth = Math.max(decalWidth - PLATE_INSET_X, decalWidth * 0.86);
     const plateHeight = Math.max(decalHeight - PLATE_INSET_Y, decalHeight * 0.84);
+    const plateDepth = preset.plateDepth ?? PLATE_DEPTH;
     const contentDepth = preset.contentDepth ?? (
         image === LEVER_UP_IMAGE || image === LEVER_DOWN_IMAGE
-            ? PLATE_DEPTH * 0.34
+            ? plateDepth * 0.34
             : image === miscPath('wall_torch_holder_empty.png')
-                ? PLATE_DEPTH * 0.02
-                : PLATE_DEPTH * 0.16
+                ? plateDepth * 0.02
+                : plateDepth * 0.16
     );
     const scatterOffset = resolveWallDecalScatterOffset(image, tileX, tileY, face);
     const fallbackImage =
@@ -256,8 +257,8 @@ export const WallDecal = ({
                 )}
                 {preset.hasBacking && (
                     <>
-                        <mesh position={[0, 0, PLATE_DEPTH * 0.55]} frustumCulled={false} renderOrder={1} raycast={NO_RAYCAST}>
-                            <boxGeometry args={[plateWidth, plateHeight, PLATE_DEPTH]} />
+                        <mesh position={[0, 0, plateDepth * 0.55]} frustumCulled={false} renderOrder={1} raycast={NO_RAYCAST}>
+                            <boxGeometry args={[plateWidth, plateHeight, plateDepth]} />
                             <meshBasicMaterial
                                 color={preset.plateColor}
                                 transparent={wallTransparent}
@@ -268,7 +269,7 @@ export const WallDecal = ({
                     </>
                 )}
                 {preset.hasGlow && (
-                    <mesh position={[0, 0, PLATE_DEPTH * 0.04]} frustumCulled={false} renderOrder={2} raycast={NO_RAYCAST}>
+                    <mesh position={[0, 0, plateDepth * 0.04]} frustumCulled={false} renderOrder={2} raycast={NO_RAYCAST}>
                         <planeGeometry args={[decalWidth * 1.1, decalHeight * 1.1]} />
                         <meshBasicMaterial
                             color={accent}

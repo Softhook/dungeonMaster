@@ -157,6 +157,8 @@ export const fr = {
         clickToReassign: 'Cliquez sur un raccourci pour le reassigner.',
         pressNewKey: 'Appuyez sur une nouvelle touche...',
         pressEscToCancel: 'Appuyez sur Echap pour annuler.',
+        resetKeybindings: 'Reinitialiser les raccourcis',
+        resetKeybindingsTitle: 'Restaurer les raccourcis par defaut',
         close: 'Fermer',
         actionLabels: {
             moveForward: 'Avancer',

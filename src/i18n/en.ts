@@ -157,6 +157,8 @@ export const en = {
         clickToReassign: 'Click a binding to reassign it.',
         pressNewKey: 'Press a new key...',
         pressEscToCancel: 'Press Escape to cancel.',
+        resetKeybindings: 'Reset to defaults',
+        resetKeybindingsTitle: 'Restore the default keybindings',
         close: 'Close',
         actionLabels: {
             moveForward: 'Move forward',

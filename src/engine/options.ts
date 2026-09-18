@@ -3,10 +3,10 @@
 export const DEFAULT_KEYBINDINGS: KeyBindings = {
     moveForward: ['ArrowUp', 'w'],
     moveBackward: ['ArrowDown', 's'],
-    turnLeft: ['ArrowLeft', 'a'],
-    turnRight: ['ArrowRight', 'd'],
-    strafeLeft: ['q'],
-    strafeRight: ['e'],
+    turnLeft: ['ArrowLeft', 'q'],
+    turnRight: ['ArrowRight', 'e'],
+    strafeLeft: ['a'],
+    strafeRight: ['d'],
 };
 
 export const DEFAULT_GAME_OPTIONS: GameOptions = {
