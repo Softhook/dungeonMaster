@@ -33,12 +33,36 @@ The project's original data pipeline (`assets/OriginalDataExtraction/`) was buil
 - Added `assets/OriginalDataExtraction/extract_amiga_sounds.cjs` so the extraction is reproducible from the kept ADF.
 - Christian did an in-browser listening pass and confirmed the new sounds play correctly in-game.
 
+## Combat/spell timing tables (`i559`/`i560`/`i561`/`i562`) — checked, essentially identical
+
+Re-supplied `Dungeon Master for Amiga v2.0 (English).adf` specifically because its 5 stat-table blobs (indices `558`–`562`, labeled "Various Data, Structure described in CSBwin source code") sit at the *exact same indices* as Atari ST v1.1, unlike v3.6 where they've been merged into one unlabeled 9,176-byte blob at index `696`. Ran the existing `decode_i559/560/561/562_blob.cjs` scripts (written for Atari) against the real Amiga blobs with **zero code changes**:
+
+- `i559` (creature stats): all **27 creatures** identical to Atari on every combat field — `movementTicks`, `attackTicks`, `defense`, `baseHealth`, `attack`, `poisonAttack`, `dexterity`.
+- `i560` (attacks & spells): all **25 spells** identical, including `recoveryTicks`. Of **44 attacks**, 43 identical; **one real difference found**: "War Cry"'s `skillNumber` is `14` on Atari ST vs. `7` on Amiga v2.0.
+- `i562` (drop order, sound table, palette/color maps): every field identical.
+- `i561` (UI button/key tables): byte-count differs (2004 vs. 2052), most likely because the Atari reference build (v1.1) and Amiga build (v2.0) are different-enough versions, not a platform difference — unconfirmed either way.
+
+## `Dungeon.dat` (map/item/monster placement) — checked, essentially identical
+
+Found that `docs/EXTERNAL_REFERENCE_IMPORT_AUDIT.md` already documented the compressed dungeon format (`0x8104` signature, 4 most-common + 16 less-common byte dictionary, `0xx`/`10xxxx`/`11xxxxxxxx` MSB-first bitstream), and `parse_full.cjs` already implements the decompressor (`decodeCompressedDungeon`) — but hardcoded little-endian for PC. The bitstream itself is byte-oriented and endian-agnostic; only the 3 multi-byte header fields need big-endian reads for Atari ST/Amiga.
+
+- Added `decode_amiga_dungeon.cjs` — a big-endian header variant of the same decompressor. Ran it against the real Amiga v2.0 `Dungeon.dat`: consumed the entire 25,006-byte compressed file exactly and produced exactly the declared 33,444-byte output with no errors.
+- The decompressed buffer's header reads correctly as big-endian: `dungeonId = 99` (the documented "99 = Dungeon Master" signature), `numMaps = 14` — confirms the decompression is correct and the underlying struct layout matches the PC format exactly, just byte-swapped.
+- **Object counts** (from the decompressed header) vs. the existing PC-derived `output/dungeon.json`: doors, teleporters, texts, creatures, weapons, armor, scrolls, potions, containers, and misc items are **exactly identical** (170/179/125/182/107/121/35/56/12/280). Only `sensors` differs by one (683 Amiga vs. 684 PC) — unconfirmed whether that's a real difference or a parsing/reserved-slot quirk.
+- Added `decode_amiga_dungeon_maps.cjs` — a big-endian port of `parse_dungeon.js`'s tile-grid reader. Compared all 14 maps' tile-by-tile layout (wall/floor/pit/stairs/door/teleporter/trick-wall) against the PC `output/dungeon.json`: **12,004 tiles compared, only 4 differ** (all in map 5), and those 4 sit in maps where my quick width/height decode is off by one tile — likely a parsing edge case on my side, not a real map difference, since the other 13 maps (including the full 32×32 ones) are **byte-for-byte identical**, tile type and object-presence flag included.
+- **Not yet done:** per-object field decoding (the actual creature-type/item-type and exact tile position of each of the ~1,850 placed objects) — only counts and the tile grid have been checked so far, not individual placement records. That would mean porting more of `parse_full.cjs`'s object-list traversal to big-endian.
+
+**Bottom line so far: map layout, item counts, and monster counts appear to be effectively identical between the Amiga and PC/Atari versions of Dungeon Master.** No evidence yet of a real placement difference anywhere.
+
 ## Open / not done
 
 - **No pixel-level Amiga image decoder yet.** `extract_graphics_entry.cjs` pulls the raw decompressed blob per `IMG1`/`RAW1`/etc. entry, but nothing converts Amiga planar bitplane data + a 16/32-color palette into actual pixels. Needed before any real use of the original graphics (reference art, a possible classic-mode toggle, or texture re-grading).
 - **No decision yet on what "visual fidelity" means given the 3D renderer.** Options raised but not chosen: (a) treat original Amiga art as reference/inspiration only for re-texturing, (b) build a real toggleable classic 2D/retro mode (large effort, would need the bitplane decoder above plus a parallel 2D rendering path), (c) skip visuals entirely and stay audio-only.
-- **Only v3.6 (EN/FR/DE) has been examined.** Earlier 16-color Amiga versions (2.0–2.2) were available but deleted before any comparison; if per-version differences ever matter (e.g. bug fixes — see ReDMCSB's `BugsAndChanges.htm`, which documents real behavior differences between Amiga 2.x and 3.x), they're gone and would need re-sourcing.
-- **No byte-level diff done between Amiga and Atari/PC `Dungeon.dat`/`Graphics.dat` data tables.** The "shared format, so shared data" conclusion is based on reading the engine source's file-handling code, not on actually comparing extracted item/creature/spell tables entry-by-entry. Worth doing before fully trusting it.
+- **Only v2.0 and v3.6 have been examined.** v2.1/v2.2 ADFs are present but marked "Original (Not working)" (likely copy-protected/needs cracking) and haven't been tried; if per-version differences ever matter (e.g. bug fixes — see ReDMCSB's `BugsAndChanges.htm`, which documents real behavior differences between Amiga 2.x and 3.x), those are the versions to check.
+- **The "War Cry" `skillNumber` difference (14 vs. 7) hasn't been chased down** — don't yet know which skill index that maps to or what it actually changes in play.
+- **Per-object placement records not yet decoded.** Map tile grids and object *counts* match almost exactly, but the actual creature-type/item-type and exact position of each individual placed object hasn't been verified — would need porting more of `parse_full.cjs`'s object-list traversal to big-endian.
+- **The 4-tile / off-by-one-width discrepancy in 3 of 14 maps hasn't been root-caused** — likely a bug in the quick comparison script's width/height bit decoding, not a real map difference, but unconfirmed.
+- **The one-off `sensors` count difference (683 vs. 684) hasn't been root-caused.**
 - **No audio balance/QA pass.** Sounds are confirmed playing, but nobody has checked relative volume/loudness against the old sound set, or listened to all 33 in context.
 - `DungeonF.DAT` / `DungeonG.DAT` (French/German dungeon files also present on the disk) haven't been looked at — likely irrelevant unless multi-language support becomes a goal.
 
@@ -47,5 +71,6 @@ The project's original data pipeline (`assets/OriginalDataExtraction/`) was buil
 1. Do a fuller audio playtest pass — all 33 replaced sounds, in context, checking for volume/gain mismatches against the sounds they replaced.
 2. Decide the visual-fidelity scope (see options above) before investing in a bitplane/palette decoder — that's a real chunk of reverse-engineering work and shouldn't start without a clear target.
 3. If proceeding with visuals: write the Amiga `IMG1` planar-to-chunky + palette decoder referencing `AMIGAVID.C`/`PALETTE.C`, output to a reference folder first (not wired into the game) so the art can inform re-texturing decisions.
-4. Spot-check a handful of Amiga `Dungeon.dat`/`Graphics.dat` stat entries against the existing Atari-derived `output/atari_i55x_stats.json` files to confirm the "shared data" assumption before leaning on it further.
-5. Keep this document updated as new Amiga-sourced work lands, the same way `REMAKE_STATUS.md` tracks the main project.
+4. Look up what skill index 7 vs. 14 actually means (`ORIGINAL_SKILLS_AND_EXPERIENCE.md`) to understand the War Cry discrepancy.
+5. If placement-level fidelity ever matters beyond counts/tiles, port `parse_full.cjs`'s object-list traversal to big-endian and diff actual creature/item positions.
+6. Keep this document updated as new Amiga-sourced work lands, the same way `REMAKE_STATUS.md` tracks the main project.
