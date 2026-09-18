@@ -6,13 +6,13 @@ Goal: rebuild the original dungeon, systems, and feel as faithfully as possible 
 
 Live build: [dungeon-master.fr](https://dungeon-master.fr/)
 
-Current local version: `v0.9.4`
+Current local version: `v0.9.5`
 
 ## Status
 
-This is now a desktop-first `0.9.4` public build focused on late stabilization, Hall of Fame hardening, and fidelity fixes that tighten the original rules without reopening the core runtime.
+This is a desktop-first public build. As of `0.9.5`, the project has started shifting its fidelity target from Atari ST/PC-derived data toward the **Amiga** version specifically, starting with audio sourced from a real Amiga disk. See [Amiga remake progress](docs/AMIGA_REMAKE_PROGRESS.md) for the ongoing log and open questions.
 
-Latest `v0.9.4` focus:
+Latest `v0.9.5` focus:
 
 - shared `Hall of Fame` flow was stabilized across client and VPS, with better validation diagnostics, canonical proof signatures, saner long-run acceptance, and cleaner submission UX
 - victory stats and `Hall of Fame` presentation were improved, including compact formatting for large counters, clearer confirmation flow, and title-screen access to detailed shared runs
@@ -20,6 +20,7 @@ Latest `v0.9.4` focus:
 - original magic rules were tightened further: rune mana is now spent on click with no refund on cancel, and rune mana tables were rechecked against original sources
 - charge-bearing items and `Magical Boxes` were recaled closer to original behavior, including proper depletion or consumption and clearer empty-state feedback
 - run stats are now more reliable and readable, with cleaner per-spell labels and better per-creature tracking for new runs
+- 32 sound effects (attacks, movement, doors, spells, champion pain, etc.) were replaced with real samples extracted from an original Amiga *Dungeon Master* v3.6 disk, decoded and resampled to match authentic Paula-chip playback rate
 
 Already in place:
 
@@ -88,6 +89,7 @@ docs/
 - [Next phase plan](docs/NEXT_PHASE_PLAN.md)
 - [Remake status](docs/REMAKE_STATUS.md)
 - [0.9.x finish plan](docs/RC_FINISH_PLAN.md)
+- [Amiga remake progress](docs/AMIGA_REMAKE_PROGRESS.md)
 
 ## Credits
 
@@ -116,6 +118,10 @@ Special effects :
 Playtesting help:
 
 - [Hydro338](https://github.com/Hydro338) for playtesting, bug reports, and ongoing feedback
+
+Amiga remake:
+
+- Christian Nold - Amiga remake
 
 ## Intent
 

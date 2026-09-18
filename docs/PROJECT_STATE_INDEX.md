@@ -14,6 +14,8 @@ Ce document sert seulement a dire quel document lire selon le besoin.
   - journal d'etat detaille et historique
 - [RC_FINISH_PLAN.md](./RC_FINISH_PLAN.md)
   - plan court de stabilisation `0.9.x`
+- [AMIGA_REMAKE_PROGRESS.md](./AMIGA_REMAKE_PROGRESS.md)
+  - journal et plan pour le virage vers la fidelite Amiga
 
 Regle:
 
@@ -55,11 +57,14 @@ Si on doit se recaler vite:
   - [CODEBASE_REFERENCE.md](./CODEBASE_REFERENCE.md)
 - Ou regarder pour un playtest guide:
   - [PLAYTEST_CHECKLIST_LEVELS_1_TO_3.md](./PLAYTEST_CHECKLIST_LEVELS_1_TO_3.md)
+- Ou en est le virage vers la fidelite Amiga:
+  - [AMIGA_REMAKE_PROGRESS.md](./AMIGA_REMAKE_PROGRESS.md)
 
 ## Lecture honnete actuelle
 
 - extraction: solide sur le contenu principal, avec quelques angles morts semantiques restants
 - moteur: largement source-backed sur le coeur du gameplay
-- branche publique de travail: `0.9.4`
+- branche publique de travail: `0.9.5`
 - principal reste ouvert: petit polish UX/visuel, verification Hall of Fame et ecrans de fin sur quelques environnements, et optimisation seulement si un symptome concret revient
 - le `store` n'est plus le chantier prioritaire
+- nouveau chantier lateral: virage vers la fidelite Amiga, demarre par l'audio (voir [AMIGA_REMAKE_PROGRESS.md](./AMIGA_REMAKE_PROGRESS.md))
